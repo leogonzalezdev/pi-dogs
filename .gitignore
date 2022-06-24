@@ -107,4 +107,4 @@ dist
 package-lock.json
 
 # Directorios de desarrollo
-homework
+homework/

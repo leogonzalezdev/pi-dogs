@@ -4,11 +4,9 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('temperamento', {
-    ID: {
-      type: DataTypes.INTEGER,
-    },
-    Nombre: {
+    name: {
       type: DataTypes.STRING,
+      
     },
   });
 };

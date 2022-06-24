@@ -1,0 +1,51 @@
+.welcomeBtn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  bottom: 100px;
+  width: 7em;
+  padding: 0.5em 1em;
+  background: var(--cian-dark);
+  border: none;
+  border-radius: 34px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+  transition: all 600ms;
+  color: var(--light);
+  text-decoration: none;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.welcomeBtn:hover {
+  color: var(--dark);
+  background: var(--power-cian);
+}
+.welcomeBtn:focus {
+  box-shadow: none;
+  transform: scale(0.5);
+}
+.welcomeBtn img {
+  width: 49px;
+  margin-left: 10px;
+  animation: my-animation 5s infinite;
+}
+
+@keyframes my-animation {
+  /* al definir los keyframes de la animación también la otorgamos un nombre*/
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(45deg);
+  }
+  50% {
+    transform: rotate(-45deg);
+  }
+  75% {
+    transform: rotate(45deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}

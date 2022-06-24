@@ -1,0 +1,22 @@
+.container{
+  height: 100vh;
+  background: url("../../images/fondo.jpg") no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+}
+.dogPicture {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  min-width: 150px;
+  width: 30vw;
+}
+.title {
+  text-align: center;
+  font-size: 50px;
+  color: var(--light);
+  text-shadow:  7px 5px 3px rgba(3, 3, 3, 0.58);
+  letter-spacing: 1px;
+}

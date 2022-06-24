@@ -1,0 +1,33 @@
+.filtersBreeds{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+}
+
+.filtersBreeds::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+.filtersBreeds::-webkit-scrollbar:vertical {
+  width:5px;
+}
+
+.filtersBreeds::-webkit-scrollbar-button:increment,.filtersBreeds::-webkit-scrollbar-button {
+  display: none;
+} 
+
+.filtersBreeds::-webkit-scrollbar:horizontal {
+  height:5px;
+}
+
+.filtersBreeds::-webkit-scrollbar-thumb {
+  background-color: var(--cian);
+  border-radius: 20px;
+}
+
+.filtersBreeds::-webkit-scrollbar-track {
+  border-radius: 10px;  
+}

@@ -4,28 +4,34 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('raza', {
-    ID: {
+ 
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+
+    height: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+
+    weight: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+
+    life_span: {
+      type: DataTypes.STRING
+
+    },
+
+    image: {
+      type: DataTypes.STRING,
+    },
+
+    apiId: {
       type: DataTypes.INTEGER,
-      primaryKey: true,
-      allowNull:true
-    },
-    Nombre:{
-      type: DataTypes.STRING(30),
-      allowNull:true
-    },
-    Altura:{
-      type: DataTypes.FLOAT,
-      allowNull:true
-    },
-    Peso:{
-      type: DataTypes.FLOAT,
-      allowNull:true
-    },
-    Years:{
-      type: DataTypes.INTEGER,
-      someAttribute:{
-        max: 30
-      },
     }
+
   });
 };

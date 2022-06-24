@@ -1,0 +1,17 @@
+/* .cardsContainer{
+  display: grid;
+  grid-auto-rows: minmax(300px, auto);
+  grid-auto-flow: dense;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, .5fr));
+  padding: 0 6em;
+  grid-gap: 10px;
+} */
+  /* grid-template-columns:1fr 1fr 1fr 1fr;
+}}*/
+.cardsContainer{
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding: 0 5em;
+}
