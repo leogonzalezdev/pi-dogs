@@ -10,6 +10,7 @@
   overflow: hidden;
   height: 400px;
   max-height: 500px;
+  scroll-snap-align:end;
   transition: all 400ms;
 }
 
@@ -30,6 +31,11 @@ img{
   display: block;
   border-radius: 20px 20px 0 0;
   transition: all 600ms;
+  color: var(--light);
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 150px;
 }
 /* img:not([src]){
   border: 10px solid #f8501c;
@@ -83,11 +89,14 @@ img{
   padding: 10px 20px;
   line-height: 1.5rem;
 }
+
 .details>h3{
   color: #ffffff;
   font-weight: 600;
   font-size: 18px;
   margin: 7px 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .details>p{
   color: #a0a0a0;

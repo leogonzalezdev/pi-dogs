@@ -19,6 +19,11 @@
 .searchInput:focus {
   box-shadow: 0 1px 10px rgb(95, 215, 251);
 }
+.textTitle{
+  margin: 20px 0 0 0 ;
+  color: #afafaf;
+  text-align: center;  
+}
 select {
   cursor: pointer;
   padding: 10px 15px;

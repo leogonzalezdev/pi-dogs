@@ -1,17 +1,17 @@
-import React from 'react'
-import Card from '../Card/Card';
-import styles from './FiltersDogs.module.css';
+import React from "react";
+import Card from "../Card/Card";
+import styles from "./FiltersDogs.module.css";
 
-const FiltersDogs = ({dogs}) => {
+const FiltersDogs = ({ dogs }) => {
   return (
-    <div className={styles.filtersBreeds}>
-      {
-        dogs.map(dog => {
-          return (<Card dog={dog} key={dog.id}/>)
-        })
-      }
-    </div>
-  )
-}
+    <>
+      <div className={styles.filtersBreeds}>
+        {dogs.map((dog) => {
+          return <Card dog={dog} key={dog.id} />;
+        })}
+      </div>
+    </>
+  );
+};
 
-export default FiltersDogs
+export default FiltersDogs;

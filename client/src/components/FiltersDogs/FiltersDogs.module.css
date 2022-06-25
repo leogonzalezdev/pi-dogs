@@ -1,10 +1,10 @@
-.filtersBreeds{
-  width: 100%;
+.filtersBreeds {
   display: flex;
-  justify-content: center;
   flex-direction: row;
   flex-wrap: nowrap;
   overflow-x: scroll;
+  padding: 1em 6em;
+  scroll-snap-type: x mandatory;
 }
 
 .filtersBreeds::-webkit-scrollbar {
@@ -12,15 +12,16 @@
 }
 
 .filtersBreeds::-webkit-scrollbar:vertical {
-  width:5px;
+  width: 5px;
 }
 
-.filtersBreeds::-webkit-scrollbar-button:increment,.filtersBreeds::-webkit-scrollbar-button {
+.filtersBreeds::-webkit-scrollbar-button:increment,
+.filtersBreeds::-webkit-scrollbar-button {
   display: none;
-} 
+}
 
 .filtersBreeds::-webkit-scrollbar:horizontal {
-  height:5px;
+  height: 5px;
 }
 
 .filtersBreeds::-webkit-scrollbar-thumb {
@@ -29,5 +30,5 @@
 }
 
 .filtersBreeds::-webkit-scrollbar-track {
-  border-radius: 10px;  
+  border-radius: 10px;
 }

@@ -1,6 +1,6 @@
 const { Router } = require("express");
-const Raza = require("../models/Raza");
-const Temperamento = require("../models/Temperamento");
+const {Raza, Temperamento} = require("../db");
+// const Temperamento = require("../models/Temperamento");
 const axios = require("axios");
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -20,7 +20,7 @@ router.get("/dogs/:id", (req, res) => {
   }
 });
 
-router.get("/dogs", (req, res) => {
+router.get("/dogs", async (req, res) => {
   try {
     if (Object.keys(req.query).length) {
       axios
@@ -32,7 +32,10 @@ router.get("/dogs", (req, res) => {
           res.status(400).json({ msg: error });
         });
     } else {
-      axios.get(`https://api.thedogapi.com/v1/breeds`).then((respuesta) => res.json(respuesta.data));
+      const localBreed = await Raza.findAll();
+      console.log(localBreed);
+      axios.get(`https://api.thedogapi.com/v1/breeds`)
+      .then((respuesta) => res.json(localBreed.concat(respuesta.data)));
     }
   } catch (error) {
     res.status(400).json({ msg: error });
@@ -40,24 +43,32 @@ router.get("/dogs", (req, res) => {
 });
 
 // --------- POST ---------
-// router.post("/dogs", async (req, res) => {
-//   const { name, height, weight, life_span, image, temperaments } = req.body;
-//   if (temperaments.length === 0) {
-//     return res.sendStatus(500);
-//   }
-//   try {
-//     const newBreed = await Raza.create({
-//       name,
-//       height,
-//       weight,
-//       life_span,
-//       image: image,
-//     });
-//     await newBreed.addTemperament(temperaments);
-//   } catch (error) {
-//     res.status(500).json(error);
-//   }
-// });
+router.post("/dogs", async (req, res) => {
+  const { name, height, weight, life_span, image } = req.body;
+  // if (temperaments.length === 0) {
+  //   return res.sendStatus(500);
+  // }
+  if (!height || !name || !weight || !life_span || !image)
+    return res.status(400).send("Falta enviar datos obligatorios");
+
+    // console.log(Raza.create({}));
+  try {
+    // crear el personaje
+    const newBreed = Raza.create({
+      name,
+      height,
+      weight,
+      life_span,
+      image,
+    });
+    // console.log(personaje);
+    // ver que y como se crea
+    // enviarlo como respuesta
+    return res.status(201).json(newBreed);
+  } catch (error) {
+    return res.status(404).json({ msg: "Error en alguno de los datos provistos", err: error });
+  }
+});
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);

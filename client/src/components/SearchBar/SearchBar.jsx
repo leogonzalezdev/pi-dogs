@@ -41,12 +41,12 @@ function SearchBar({ getDogsByBreeds, dogsBreeds }) {
             <option>Descendente</option>
           </select>
         </form>
-        <div>
-          {/* <Cards  dogs={dogsBreeds}/> */}
-
-          {/* {dogsBreeds.lenght > 0 ?  <Cards dogs={dogsBreeds}/> : null} */}
-        </div>
       </div>
+      {breed ? (
+        <p className={styles.textTitle}>
+          {dogsBreeds.length === 0 ? "No hay resultados" : "Estas razas coiciden con tu búsqueda"}
+        </p>
+      ) : null}
       <FiltersDogs dogs={dogsBreeds} />
     </>
   );

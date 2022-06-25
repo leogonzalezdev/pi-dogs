@@ -1,7 +1,8 @@
 import React from 'react';
 import Card from '../Card/Card';
 import syles from './Cards.module.css';
-const Cards = ({dogs}) => {
+const Cards = ({dogs, pageRef}) => {
+  console.log(dogs);
   return (
     <div className={syles.cardsContainer}>
       {
@@ -11,6 +12,7 @@ const Cards = ({dogs}) => {
       }
     </div>
   )
+
 }
 
 export default Cards

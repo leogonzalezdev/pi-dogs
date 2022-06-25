@@ -1,0 +1,15 @@
+.formInput {
+  background: transparent;
+  padding: 10px 15px;
+  margin: 5px 10px;
+  border-radius: 14px;
+  outline: none;
+  border: none;
+  color: var(--light);
+  border: 2px solid var(--cian);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+  transition: all 300ms;
+}
+.formInput:focus {
+  box-shadow: 0 1px 10px rgb(95, 215, 251);
+}
