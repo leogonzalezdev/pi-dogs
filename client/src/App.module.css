@@ -1,15 +1,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap');
 
 :root{
+  --primary: #fcd02d;
+  --primary-hover: #f9d65a;
+  --primary-focus: #fccf2dd0;
+
+  --secondary: #464b55;
+  --secondary-hover: #464b55;
+  --secondary-focus: #464b55;
+  
+  --success: #0ebd8b;
+  --success-hover: #0ebd8b;
+  --success-focus: #0ebd8b;
+  
+  --light: #fdfffb;
+  --light-hover: #fdfffb;
+  --light-focus: #fdfffb;
+  
+  --dark: #151320;
+  --dark-hover: #151320;
+  --dark-focus: #151320;
+  
+  --danger: #aa3634 ;
+  --danger-hover: #aa3634 ;
+  --danger-focus: #aa3634 ;
+
   --red:#aa3634;
-  --power-cian: rgb(95, 214, 251);
+  --power-cian: #5fd6fb;
   --cian:#3779cd;
   --cian-dark: #19355b;
-  --light: #fdfffb;
-  --secondary: #464b55;
-  --primary: #fcd02d;
-  --dark: #151320;
-  --success: #0ebd8b;
 }
 
 body {

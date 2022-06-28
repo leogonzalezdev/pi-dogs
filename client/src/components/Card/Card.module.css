@@ -10,7 +10,7 @@
   overflow: hidden;
   height: 400px;
   max-height: 500px;
-  scroll-snap-align:end;
+  scroll-snap-align: end;
   transition: all 400ms;
 }
 

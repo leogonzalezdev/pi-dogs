@@ -1,30 +1,25 @@
 import React from "react";
+import './Pagination.css';
 
-const Pagination = ({pageRef, totalPagesRef}) => {
+const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
+  const pageNumbers = [];
 
-  const prevPage = () => {
-    if (pageRef.current > 1) {
-      pageRef.current--;
-      console.log(pageRef.current);
-    }
-  };
-  
-  const nextPage = () => {
-    if (totalPagesRef.current > pageRef.current) {
-      pageRef.current++;
-      console.log(pageRef.current);
-    }
-  };
+  for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
+    pageNumbers.push(i);
+  }
 
   return (
-    <div className="pagination">
-      <button onClick={() => prevPage()} className="" disabled={pageRef < 1}>
-        Prev
-      </button>
-      <button onClick={() => nextPage()} className="">
-        Next
-      </button>
-    </div>
+    <nav className="pagination-nav">
+      <ul className='pagination'>
+        {pageNumbers.map(number => (
+          <li key={number} className='page-item'>
+            <a onClick={() => paginate(number)} className='page-link'>
+              {number}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 };
 

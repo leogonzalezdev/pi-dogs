@@ -1,14 +1,14 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import logo from "../../images/dog.png";
 import styles from "./Navbar.module.css";
 
 const Navbar = () => {
   return (
     <nav className={styles.navbar}>
-      <div className={styles.left}>
+      <Link to="/home" className={styles.left}>
         <img className={styles.logo} src={logo} alt="logotipo" />
-      </div>
+      </Link>
       {/* <div className={styles.burgerMenu}>
         <div className={styles.line}></div>
         <div className={styles.line}></div>

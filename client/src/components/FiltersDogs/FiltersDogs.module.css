@@ -1,10 +1,12 @@
 .filtersBreeds {
+  margin-top: 10px;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   overflow-x: scroll;
-  padding: 1em 6em;
   scroll-snap-type: x mandatory;
+  padding: .7em 6em;
 }
 
 .filtersBreeds::-webkit-scrollbar {

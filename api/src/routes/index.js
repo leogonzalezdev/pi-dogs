@@ -44,14 +44,13 @@ router.get("/dogs", async (req, res) => {
 
 // --------- POST ---------
 router.post("/dogs", async (req, res) => {
-  const { name, height, weight, life_span, image } = req.body;
+
+  const { name, height, weight, life_span, image, temperamentos } = req.body;
   // if (temperaments.length === 0) {
   //   return res.sendStatus(500);
   // }
-  if (!height || !name || !weight || !life_span || !image)
+  if (!height || !name || !weight || !life_span || !image || !temperamentos)
     return res.status(400).send("Falta enviar datos obligatorios");
-
-    // console.log(Raza.create({}));
   try {
     // crear el personaje
     const newBreed = Raza.create({
@@ -61,13 +60,23 @@ router.post("/dogs", async (req, res) => {
       life_span,
       image,
     });
-    // console.log(personaje);
+
+    const find = await Temperamento.findAll({
+      where: {name: temperamentos}
+    });
+    
+    console.log(find);
+
+    newBreed.addTemperamento(find)
+
     // ver que y como se crea
     // enviarlo como respuesta
-    return res.status(201).json(newBreed);
+    return res.status(200).json(newBreed);
+
   } catch (error) {
     return res.status(404).json({ msg: "Error en alguno de los datos provistos", err: error });
   }
+
 });
 
 // Configurar los routers

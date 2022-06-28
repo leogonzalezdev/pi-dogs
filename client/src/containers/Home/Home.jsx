@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getDogs } from "../../redux/actions";
 import { connect } from "react-redux";
 import Navbar from "../../components/Navbar/Navbar.jsx";
@@ -7,35 +7,59 @@ import styles from "./Home.module.css";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import Pagination from "../../components/Pagination/Pagination";
 
-
 const Home = ({ dogsLoaded, getDogs }) => {
-  // useEffect(() => {
-  //   dispatch(getDogs());
-  // }, [dispatch]);
-  const pageRef = useRef(1);
-  const totalPagesRef = useRef(0)
-  const itemsPerPage = 8;
 
-  const [items, setItems] = useState([...dogsLoaded].splice(0, itemsPerPage))
+  const [dogsToShow, setDogToShow] = useState([]);
+  // PAGINATION 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(8);
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  // 1 * 8 = 8
+  // 2 * 8 = 16
+  // 3 * 8 = 24
+
+
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  // 8 - 8 = 0
+  // 16 - 8 = 8
+
+  const currentPosts = dogsToShow.slice(indexOfFirstPost, indexOfLastPost);
+  /*
+  [
+    0:{}
+    1:{}
+    2:{}
+    3:{}
+    4:{}
+    5:{}
+    6:{}
+    7:{}
+  ]
+  */
+
+  useEffect(()=>{
+    setDogToShow([...currentPosts])
+  }, [])
+
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   useEffect(async function () {
     await getDogs();
   }, []);
-  
-  useEffect(()=>{
-    // totalPagesRef.current = (Math.ceil(dogsLoaded.length / 8));
-    setTimeout(() => {
-      console.log(totalPagesRef);
-    },5000);
-  }, [dogsLoaded])
+
+  useEffect(() => {
+    setDogToShow([...dogsLoaded]);
+  }, [dogsLoaded]);
 
   return (
     <section className={styles.home}>
       <Navbar />
-      {/* <Pagination pageRef={pageRef} totalPagesRef={totalPagesRef}/> */}
-      <SearchBar />
+      <SearchBar setDogToShow={setDogToShow} dogsToShow={dogsToShow} />
       <h1 style={{ color: "white", textAlign: "center" }}>LISTADO DE PERROS</h1>
-      <Cards pageRef={pageRef} totalPagesRef={totalPagesRef}  dogs={dogsLoaded} />
+      <Cards dogs={currentPosts} />
+      <Pagination postsPerPage={postsPerPage} totalPosts={dogsToShow.length} paginate={paginate} />
     </section>
   );
 };
@@ -45,10 +69,5 @@ function mapStateToProps(state) {
     dogsLoaded: state.dogsLoaded,
   };
 }
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     getDogs: () => dispatch(getDogs()),
-//   };
-// }
 
 export default connect(mapStateToProps, { getDogs })(Home);
