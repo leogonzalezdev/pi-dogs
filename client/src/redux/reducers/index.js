@@ -2,6 +2,7 @@ const initialState = {
   dogsBreeds: [],
   dogsLoaded: [],
   dogDetails: {},
+  temperaments: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -9,7 +10,6 @@ function rootReducer(state = initialState, action) {
     return {
       ...state,
       dogsLoaded: action.payload,
-      showLoading: action.payload,
     };
   }
   if (action.type === "GET_DOG_DETAILS") {
@@ -22,6 +22,12 @@ function rootReducer(state = initialState, action) {
     return {
       ...state,
       dogsBreeds: action.payload,
+    };
+  }
+  if (action.type === "GET_TEMPERAMENTS") {
+    return {
+      ...state,
+      temperaments: action.payload,
     };
   }
   return state;

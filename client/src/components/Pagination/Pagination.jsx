@@ -3,6 +3,7 @@ import './Pagination.css';
 
 const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
   const pageNumbers = [];
+  // 100 / 8 = 13
 
   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
     pageNumbers.push(i);
@@ -10,15 +11,17 @@ const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
 
   return (
     <nav className="pagination-nav">
-      <ul className='pagination'>
-        {pageNumbers.map(number => (
+      <ol className='pagination'>
+        {
+        pageNumbers.map(number => (
           <li key={number} className='page-item'>
-            <a onClick={() => paginate(number)} className='page-link'>
+            <button onClick={() => paginate(number)} className='page-button'>
               {number}
-            </a>
+            </button>
           </li>
-        ))}
-      </ul>
+        ))
+        }
+      </ol>
     </nav>
   );
 };

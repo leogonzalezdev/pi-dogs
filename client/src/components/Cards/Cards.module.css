@@ -15,6 +15,12 @@
   flex-wrap: wrap;
   padding: 0 5em;
   margin: 0;
-  overflow-x: scroll;
-  scroll-snap-type: x mandatory;
+}
+@media (max-width:1094px) {
+  .cardsContainer{
+    padding: 0 2em;
+  }
+}
+@media (max-width:768px) {
+  
 }

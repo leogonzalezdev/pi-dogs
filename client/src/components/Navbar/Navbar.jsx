@@ -15,13 +15,13 @@ const Navbar = () => {
       </div> */}
       <div className={styles.right}>
         <NavLink className={styles.btn} to="/home">
-          Home
+          Inicio
         </NavLink>
         <NavLink className={styles.btn} to="/createBreed">
           Crear Raza
         </NavLink>
         <NavLink className={styles.btn} to="/about">
-          About
+          Acerca de
         </NavLink>
       </div>
     </nav>

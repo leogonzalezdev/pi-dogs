@@ -14,15 +14,23 @@ const DogDetails = ({ dogDetails, getDogDetails, id }) => {
     <section>
       <Navbar />
       <div className={styles.detailsContainer}>
-        <img
-          className={styles.backgroundImage}
-          src={`https://cdn2.thedogapi.com/images/${dogDetails.reference_image_id}.jpg`}
-        />
-        <div className={styles.details}>
+        {dogDetails.image?.url ? (
+          <img className={styles.backgroundImage} src={dogDetails.image.url} />
+        ) : (
           <img
-            className={styles.portadaImage}
+            className={styles.backgroundImage}
             src={`https://cdn2.thedogapi.com/images/${dogDetails.reference_image_id}.jpg`}
           />
+        )}
+        <div className={styles.details}>
+          {dogDetails.image?.url ? (
+            <img className={styles.portadaImage} src={dogDetails.image.url} />
+          ) : (
+            <img
+              className={styles.portadaImage}
+              src={`https://cdn2.thedogapi.com/images/${dogDetails.reference_image_id}.jpg`}
+            />
+          )}
           <div className={styles.description}>
             <h3>{dogDetails.name}</h3>
             <p>{dogDetails.temperament}.</p>

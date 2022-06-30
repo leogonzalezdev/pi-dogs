@@ -4,11 +4,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: .3em 6em;
-  background: linear-gradient(to bottom, #151320b1, #ffffff00);
-
-  /* background:linear-gradient(to bottom, #5fd6fb, #3779cd); */
-  /* border-radius: 0 0 34px 34px; */
+  padding: .4em 6em;
 }
 .logo{
   cursor: pointer;
@@ -24,9 +20,9 @@
 }
 .btn{
   color: var(--light);
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   cursor: pointer;
   margin: 15px;
-  border: 2px solid var(--power-cian);
   font-weight: 500;
   text-transform: uppercase;
   padding: .5em 1em;
@@ -38,7 +34,7 @@
 .btn:hover{
   border-radius: 34px;
   background:var(--power-cian);
-  color: var(--dark);
+  color: var(--light);
 }
 .btn:focus{
   background:var(--cian-dark);
@@ -56,6 +52,15 @@
   }
   .btn{
     margin: 5px;
+  }
+}
+@media (max-width:375px) {
+  .navbar{
+    padding: 5px;
+  }
+  .btn{
+  padding: .4em .7em;
+
   }
 }
 /* .burgerMenu{

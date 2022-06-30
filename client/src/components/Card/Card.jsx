@@ -6,8 +6,9 @@ const Card = ({ dog }) => {
   return (
     <Link className={styles.card} to={`/dogs/${dog.id}`}>
       <div className={styles.container}>
-        {dog.image?.url 
-        ? <img src={dog.image.url} alt={dog.name}/>
+        {
+        dog.image?.url 
+        ? <img src={dog.image?.url} alt={dog.name}/>
         : <img src={`https://cdn2.thedogapi.com/images/${dog.reference_image_id}.jpg`} alt={dog.name}/>
         }
       </div>
@@ -17,10 +18,6 @@ const Card = ({ dog }) => {
         <p>Peso: {dog.weight.imperial} Kg</p>
       </div>
     </Link>
-    // <img className={styles.cardIcon} src={dog.image.url}/>
-    // <p className={styles.cardDescription}>
-    //   {dog.id + dog.name}
-    // </p>
   );
 };
 export default Card;

@@ -1,7 +1,7 @@
 export const GET_DOGS = "GET_DOGS";
 export const GET_DOG_DETAILS = "GET_DOG_DETAILS";
 export const GET_DOGS_BY_BREEDS = "GET_DOGS_BY_BREEDS";
-
+export const GET_TEMPERAMENTS = "GET_TEMPERAMENTS";
 
 // ----------  GET  ----------
 export function getDogs() {
@@ -34,9 +34,19 @@ export function getDogsByBreeds(breed) {
   };
 }
 
-// ---------- POST ----------
-export function createNewBreed(){
+export function getTemperaments() {
   return function (dispatch) {
-    return 
-  }
+    return fetch("http://localhost:3001/temperaments")
+      .then((res) => res.json())
+      .then((json) => {
+        dispatch({ type: "GET_TEMPERAMENTS", payload: json });
+      });
+  };
 }
+
+// ---------- POST ----------
+// export function createNewBreed(){
+//   return function (dispatch) {
+//     return 
+//   }
+// }

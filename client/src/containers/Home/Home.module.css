@@ -1,3 +1,7 @@
 body{
   background-color: #151320;
 }
+.sinRegistros{
+  text-align: center;
+  color: var(--light);
+}

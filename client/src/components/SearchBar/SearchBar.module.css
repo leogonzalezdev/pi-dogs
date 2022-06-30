@@ -1,86 +1,101 @@
 .searchBar {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 100%;
+  justify-content: flex-start;
+  margin-top: 20px;
+  padding: 0.5em 7em;
+  flex-wrap: wrap;
+}
+.fomulario {
+  display: flex;
+  justify-content: space-around;
+}
+.searchInputContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: nowrap;
 }
 .searchInput {
+  height: 35px;
+  margin-right: 10px;
   background: transparent;
-  padding: 10px 15px;
-  margin: 5px 10px;
-  border-radius: 14px;
+  padding: 0 10px;
+  border-radius: 5px;
   outline: none;
   border: none;
   color: var(--light);
-  border: 2px solid var(--cian);
+  border: 1px solid var(--power-cian);
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
   transition: all 300ms;
 }
-.searchInput:focus {
-  box-shadow: 0 1px 10px rgb(95, 215, 251);
+.searchInput::placeholder {
+  color: var(--light);
 }
-.textTitle{
-  margin: 20px 0 0 0 ;
+.searchInput:focus {
+  box-shadow: 0 0px 3px rgb(95, 215, 251);
+}
+.textTitle {
+  margin: 20px 0 0 0;
   color: #afafaf;
-  text-align: center;  
+  text-align: center;
+}
+.selectContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: nowrap;
 }
 select {
+  width: auto;
+  height: 35px;
+  padding: 0 5px;
+  text-transform: uppercase;
+  font-family: "Roboto", sans-serif;
+  letter-spacing: 0.7px;
+  font-size: 12px;
+  margin: 0 10px;
   cursor: pointer;
-  padding: 10px 15px;
-  outline: 0;
-  border: 2px solid var(--cian);
-  border-radius: 14px;
-  background: transparent;
-  color: #ffffff;
+  outline: none;
+  border: none;
+  border-radius: 3px;
+  background: var(--power-cian);
+  color: var(--dark);
+  transition: all 600ms;
+  font-weight: 600;
 }
 .select select::-ms-expand {
   display: none;
 }
+
 select:hover,
 select:focus {
-  border-radius: 14px;
-  color: #ffffff;
-  background: var(--dark);
+  color: var(--light);
+  background: var(--cian);
+}
+select:focus {
+  background: var(--cian-dark);
 }
 .select select:disabled {
   opacity: 0.5;
   pointer-events: none;
 }
-
-.select_arrow {
-  position: absolute;
-  top: 16px;
-  right: 15px;
-  width: 0px;
-  height: 0px;
-  border: solid #a0a0a0;
-  border-width: 0 3px 3px 0;
-  display: inline-block;
-  padding: 3px;
-  transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
-}
-.select select:hover ~ .select_arrow,
-.select select:focus ~ .select_arrow {
-  border-color: #ffffff;
-}
-.select select:disabled ~ .select_arrow {
-  border-top-color: #ffffff;
-}
 .searchBtn {
-  margin: 5px 10px;
+  width: 100px;
   color: var(--dark);
   text-transform: uppercase;
   font-family: "Roboto", sans-serif;
+  font-size: 16px;
   cursor: pointer;
   background: var(--power-cian);
   border: none;
-  border-radius: 14px;
-  padding: 10px 15px;
-  font-size: 16px;
+  border-radius: 3px;
+  height: 35px;
+  padding: 0 5px;
   font-weight: 600;
   transition: all 400ms;
   letter-spacing: 0.5px;
+  margin-right: 10px;
 }
 .searchBtn:hover {
   color: var(--light);
@@ -90,4 +105,90 @@ select:focus {
   transform: scale(0.98);
   color: var(--light);
   background: var(--cian-dark);
+}
+.resetBtn{
+  padding: 5px 3px;
+  cursor: pointer;
+  filter: invert();
+  width: 25px;
+  transition: all 600ms;
+}
+
+.resetBtn:hover{
+  transform: rotate(60deg);
+}
+.resetBtn:focus-within{
+  transform: rotate(270deg);
+}
+
+@media (max-width: 972px) {
+  .searchBar {
+    flex-direction: column;
+    padding: 0.5em 3em;
+    justify-content: space-around;
+    align-items: flex-start;
+  }
+  .searchInputContainer {
+    margin-bottom: 10px;
+  }
+  select {
+    margin-left: 2px;
+  }
+}
+@media (max-width:768px) {
+  .selectContainer {
+    flex-wrap: wrap;
+  }
+}
+@media (max-width:508px) {
+  .searchBar{
+    padding: 0 50px;
+  }
+  .searchInputContainer{
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .selectContainer {
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .searchInput {
+    margin-right: 15px;
+  }
+  .searchBtn{
+    margin: 0;
+    width: 90px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  select{
+    width: 90px;
+    margin-top: 3px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+}
+@media (max-width:400px) {
+  .searchBar{
+    align-items: center;
+    padding: 0;
+    width: 100%;
+    margin: 0;
+  }
+  .searchInputContainer{
+    width: 200px;
+    padding: 0;
+    flex-direction: column;
+  }
+  .searchBtn{
+    margin-top: 0;
+    width: 210px;
+    padding: 0 5px;
+  }
+  .searchInput{
+    padding: 0 5px;
+    margin: 10px 0;
+    width: 200px;
+  }
+
 }

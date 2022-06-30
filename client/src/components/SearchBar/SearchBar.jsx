@@ -1,35 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getDogsByBreeds } from "../../redux/actions";
 import { connect } from "react-redux";
 import styles from "./SearchBar.module.css";
-// import Cards from "../Cards/Cards.jsx";
-// import Card from "../Card/Card";
-// import FiltersDogs from "../FiltersDogs/FiltersDogs";
 
-function SortArrayAsc(x, y) {
-  return x.name.localeCompare(y.name, "fr", { ignorePunctuation: true });
-}
-
-function SortArrayDec(x, y){
-  return y.name.localeCompare(x.name, 'fr', {ignorePunctuation: true});
-}
-
-function SearchBar({ getDogsByBreeds, dogsBreeds, setDogToShow, dogsToShow }) {
+function SearchBar({ getDogsByBreeds, dogsBreeds, setDogToShow, dogsToShow, temperaments, dogsLoaded }) {
   const [breed, setBreed] = useState("");
+
+  useEffect(()=>{
+    setDogToShow(dogsBreeds)
+  }, [dogsBreeds])
 
   async function handleInputChange(evento) {
     setBreed(evento.target.value);
-    await getDogsByBreeds(breed);
-    setDogToShow([...dogsBreeds]);
+    getDogsByBreeds(breed);
   }
 
-  
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     getDogsByBreeds(breed);
-    setBreed("");
   }
-  
+
   function filterByOrder(e) {
     if (e.target.value === "az") {
       const dogsOrderByAZ = [...dogsToShow].sort(SortArrayAsc);
@@ -46,8 +36,6 @@ function SearchBar({ getDogsByBreeds, dogsBreeds, setDogToShow, dogsToShow }) {
 
   function filterByWeight(e) {
     if (e.target.value === "mayor") {
-      console.log("mayor a menor");
-
       const dogsOrderByMayor = [...dogsToShow].sort(function (dog1, dog2) {
         return parseInt(dog2.weight.imperial) - parseInt(dog1.weight.imperial);
       });
@@ -55,9 +43,8 @@ function SearchBar({ getDogsByBreeds, dogsBreeds, setDogToShow, dogsToShow }) {
       setDogToShow(dogsOrderByMayor);
       return;
     }
-    if (e.target.value === "menor") {
-      console.log("menor a mayor");
 
+    if (e.target.value === "menor") {
       const dogsOrderByMenor = [...dogsToShow].sort(function (dog1, dog2) {
         return parseInt(dog1.weight.imperial) - parseInt(dog2.weight.imperial);
       });
@@ -67,10 +54,32 @@ function SearchBar({ getDogsByBreeds, dogsBreeds, setDogToShow, dogsToShow }) {
     }
   }
 
+  function filterByTemperaments(e) {
+    const dogsOrderByTemperaments = [];
+    dogsLoaded.forEach((dog) => {
+      if (dog.temperament?.includes(e.target.value)) {
+        dogsOrderByTemperaments.push(dog);
+      }
+    });
+    setDogToShow(dogsOrderByTemperaments);
+  }
+
+  function getAllDogs(e) {
+    setDogToShow(dogsLoaded);
+  }
+
+  function SortArrayAsc(x, y) {
+    return x.name.localeCompare(y.name, "fr", { ignorePunctuation: true });
+  }
+
+  function SortArrayDec(x, y) {
+    return y.name.localeCompare(x.name, "fr", { ignorePunctuation: true });
+  }
+
   return (
     <>
-      <div className={styles.searchBar}>
-        <form onSubmit={(e) => handleSubmit(e)}>
+      <form onSubmit={(e) => handleSubmit(e)} className={styles.searchBar}>
+        <div className={styles.searchInputContainer}>
           <input
             className={styles.searchInput}
             type="text"
@@ -81,29 +90,37 @@ function SearchBar({ getDogsByBreeds, dogsBreeds, setDogToShow, dogsToShow }) {
             onChange={(e) => handleInputChange(e)}
           />
           <button className={styles.searchBtn} type="submit">
-            Search
+            buscar
           </button>
+        </div>
+        <div className={styles.selectContainer}>
           <select className="select" onChange={(e) => filterByOrder(e)}>
             <option value="az">A-Z / Z-A</option>
             <option value="az">A-Z</option>
             <option value="za">Z-A</option>
           </select>
           <select className="select" onChange={(e) => filterByWeight(e)}>
-            <option value="menor">Weight</option>
+            <option value="menor">Peso</option>
             <option value="mayor">Mayor a Menor</option>
             <option value="menor">Menor a Mayor</option>
           </select>
-        </form>
-      </div>
-      {/* {breed ? (
-        <p className={styles.textTitle}>
-          {dogsBreeds.length === 0 ? "No hay resultados" : "Estas razas coiciden con tu búsqueda"}
-        </p>
-      ) : null}
-      <FiltersDogs dogs={dogsBreeds} /> */}
+          <select className="select" onChange={(e) => filterByTemperaments(e)}>
+            <option value="">Temperamentos</option>
+            {temperaments?.map((temperamento) => {
+              return (
+                <option key={temperamento.id} value={temperamento.name}>
+                  {temperamento.name}
+                </option>
+              );
+            })}
+          </select>
+          <img onClick={() => getAllDogs()} className={styles.resetBtn} src="https://img.icons8.com/material-sharp/96/000000/reboot.png"/>
+        </div>
+      </form>
     </>
   );
 }
+
 function mapStateToProps(state) {
   return {
     dogsBreeds: state.dogsBreeds,

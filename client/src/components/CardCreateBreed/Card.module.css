@@ -1,21 +1,21 @@
 .card{
   min-width: 300px;
-  width: 300px;
+  width: 400px;
   margin: 20px 5px;
   background-color: #1c1b29;
   border-radius: 20px;
   box-shadow: 0 0 30px rgba(0,0,0,0.18);
-  cursor: pointer;
   text-decoration: none;
   overflow: hidden;
-  height: 400px;
-  max-height: 500px;
+  min-height: 500px;
+  height: auto;
   scroll-snap-align: end;
   transition: all 400ms;
+  color: var(--light);
 }
 
 .container{
-  height: 200px;
+  height: 230px;
   overflow: hidden;
   position: relative;
   clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
@@ -81,26 +81,39 @@ img{
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: space-evenly;
+  justify-content: center;
   padding: 10px 20px;
   line-height: 1.5rem;
 }
 
 .details>h3{
+  padding: 0;
   color: #ffffff;
   font-weight: 600;
-  font-size: 18px;
-  margin: 7px 0;
+  font-size: 25px;
+  margin: 10px 0;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
 .details>p{
+  margin: 5px;
   color: #a0a0a0;
-  font-size: 15px;
-  line-height: 30px;
+  font-size: 18px;
   font-weight: 400;
 }
 .temperaments{
-  max-height: 3.5rem;
-  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+}
+.span{
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 3px;
+  padding: 2px 10px;
+  color: var(--dark);
+  background-color: var(--power-cian);
+  border-radius: 5PX;
 }
