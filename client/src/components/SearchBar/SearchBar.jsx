@@ -3,10 +3,11 @@ import { getDogsByBreeds } from "../../redux/actions";
 import { connect } from "react-redux";
 import styles from "./SearchBar.module.css";
 
-function SearchBar({ getDogsByBreeds, dogsBreeds, setDogToShow, dogsToShow, temperaments, dogsLoaded }) {
+function SearchBar({ getDogsByBreeds, dogsBreeds, setDogToShow, dogsToShow, temperaments, dogsLoaded, setCurrentPage}) {
   const [breed, setBreed] = useState("");
 
   useEffect(()=>{
+    setCurrentPage(1)
     setDogToShow(dogsBreeds)
   }, [dogsBreeds])
 
@@ -17,6 +18,9 @@ function SearchBar({ getDogsByBreeds, dogsBreeds, setDogToShow, dogsToShow, temp
 
   async function handleSubmit(e) {
     e.preventDefault();
+    if (breed === '') {
+      return setDogToShow(dogsLoaded)
+    }
     getDogsByBreeds(breed);
   }
 

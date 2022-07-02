@@ -1,9 +1,10 @@
 import { Route } from "react-router-dom";
-import "./App.module.css";
 import CreateBreed from "./containers/CreateBreed/CreateBreed";
 import DogDetails from "./containers/DogDetails/DogDetails.jsx";
-import Home from "./containers/Home/Home.jsx";
 import Welcome from "./containers/Welcome/Welcome.jsx";
+import Home from "./containers/Home/Home.jsx";
+import "./App.module.css";
+import About from "./containers/About/About";
 
 function App() {
   return (
@@ -17,16 +18,7 @@ function App() {
         }}
       />
       <Route path="/createBreed" render={() => <CreateBreed />} />
-
-      {/* <Route
-        path="*"
-        render={() => (
-          <>
-            {" "}
-            <p>No hay nada acá :) </p> <NavLink to="/home">Go Home</NavLink>
-          </>
-        )}
-      /> */}
+      <Route path="/about" render={() => <About />} />
     </>
   );
 }

@@ -1,29 +1,103 @@
-.container{
+.welcomeContainer{
+  height: 100vh;
+  background-color: var(--dark);
+  background-image: url('https://img5.goodfon.com/wallpaper/nbig/b/c9/sobaka-labrador-osheinik-chernyi-fon-pios.jpg');
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.title{
+  margin: 0;
+  padding: 1em 0;
+  font-size: 4.6rem;
+  text-align: center;
+  color: var(--light);
+  font-weight: 500;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, .556);
+}
+.socialMedia{
+  background-color: var(--dark);
+  position: absolute;
+  border-radius: 14px;
+  box-shadow: 0 0 5px var(--power-cian);
+  padding: 7px 3px;
+  bottom: 30px;
+  right: 30px;
+}
+.socialMediaIcon{
+  width: 40px;
+  transition: all 600ms;
+  margin: 10px;
+}
+.socialMediaIcon:hover{
+  transform: scale(.9);
+  filter: brightness(300%);
+}
+.callToActionBtn{
+  border-radius: 5px;
+  position: absolute;
+  bottom: 50px;
+  text-decoration: none;
+  color: var(--dark);
+  margin: 0 auto;
+  font-size: 25px;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: .4em 1.2em;
+  background: var(--power-cian);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .556);
+  transition: all 600ms;
+}
+.callToActionBtn:hover{
+  color: var(--light);
+  background: var(--cian);
+}
+.callToActionBtn:focus{
+  background: var(--cian-dark);
+
+}
+
+@media (max-width:768px) {
+  .title{
+    font-size: 50px;
+  }
+  .callToActionBtn{
+    bottom: 30px;
+  }
+  .socialMedia{
+    padding: 3px 0px;
+    bottom: 10px;
+    right: 10px;
+  }
+}
+
+
+
+
+
+
+/* .container{
   height: 100vh;
   width: 100%;
   background: linear-gradient(to top, var(--dark) 0%, var(--cian-dark) 100%);
-  /* background: url("../../images/fondo.jpg") no-repeat; */
+  background: url("../../images/fondo.jpg") no-repeat;
   background-size: cover;
   background-position: center;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: flex-start;
-  align-items: center;
-  padding: 9em 0;
-}
+  align-items: center; */
+/* }
 .greeting{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-column: 1fr 1fr;
+  grid-row: 1fr;
 }
 .dogPicture {
-  margin-left: 300px;
-  bottom: 0;
-  right: 0;
-  min-width: 150px;
-  width: 20vw;
+  width: 300px;
 }
 .title {
   font-size: 55px;
@@ -77,4 +151,4 @@
   100%{
     transform: translateX(20px);
   }
-}
+} */

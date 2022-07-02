@@ -52,7 +52,7 @@ const Home = ({ dogsLoaded, getDogs, getTemperaments, temperaments }) => {
   return (
     <section className={styles.home}>
       <Navbar />
-      <SearchBar setDogToShow={setDogToShow} dogsToShow={dogsToShow} temperaments={temperaments} dogsLoaded={dogsLoaded}/>
+      <SearchBar setDogToShow={setDogToShow} dogsToShow={dogsToShow} temperaments={temperaments} dogsLoaded={dogsLoaded} setCurrentPage={setCurrentPage}/>
       <h1 style={{ color: "white", textAlign: "center" }}>LISTADO DE PERROS</h1>
       {
         currentPosts.length > 0 

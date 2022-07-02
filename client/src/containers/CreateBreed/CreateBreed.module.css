@@ -1,19 +1,21 @@
-.createBreed{
-  width: 100%;
+.createBreed {
+  background: linear-gradient(to bottom, var(--cian), var(--dark));
   height: 100vh;
-  background:linear-gradient(to top, var(--cian), var(--power-cian));
+  display: block;
 }
 
 .container {
+  padding: 3em 0;
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
   align-items: center;
-  margin: 100px auto;
   border-radius: 3px;
 }
 
-.formulario{
-  margin-right: 50px;
+.formulario {
+  width: 500px;
+  height: 400px;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -24,34 +26,50 @@
 .formInput {
   width: 250px;
   background: var(--light);
-  padding: 15px 15px;
-  margin: 15px 10px;
-  border-radius: 12px;
+  padding: 12px 10px;
+  border-radius: 5px;
   outline: none;
   border: none;
   color: var(--dark);
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.518);
   transition: all 300ms;
 }
-.error{
-  border: 2px solid var(--danger);
+.select{
+  width: 270px;
+}
+.error {
+  width: 250px;
+  text-align: center;
+  color: var(--light);
+  padding: 15px 15px;
+  background-color: var(--danger);
+  border-radius: 14px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.518);
+
 }
 .formInput:focus {
-  box-shadow: 0 1px 10px rgb(37, 37, 37);
+  box-shadow: 0 1px 10px rgba(37, 37, 37, 0.579);
 }
-
+.formGroup{
+  display: flex;
+  width: 270px;  
+  justify-content: space-between;
+}
+.formGroup input {
+  width: 110px;
+}
 .btn {
-  margin: 15px 10px;
   color: var(--dark);
   text-transform: uppercase;
   font-family: "Roboto", sans-serif;
   cursor: pointer;
   background: var(--power-cian);
   border: none;
-  border-radius: 14px;
+  border-radius: 5px;
   padding: 10px 15px;
   font-size: 16px;
   font-weight: 600;
+  width: 270px;
   transition: all 400ms;
   letter-spacing: 0.5px;
 }
@@ -63,4 +81,10 @@
   transform: scale(0.98);
   color: var(--light);
   background: var(--cian-dark);
+}
+
+.btn:disabled{
+  background: var(--secondary);
+  color: var(--light);
+  cursor:auto;
 }

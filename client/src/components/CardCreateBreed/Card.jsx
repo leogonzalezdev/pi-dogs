@@ -4,8 +4,8 @@ import styles from "./Card.module.css";
 const Card = ({ dog, input, setInput }) => {
 
   function deleteSpan(e) {
-    const arrayFilter = input.temperaments.filter(( t, i ) => i != e.target.id);
-    setInput({...input, temperaments: arrayFilter})
+    const arrayFilter = input.temperament.filter(( t, i ) => i != e.target.id);
+    setInput({...input, temperament: arrayFilter})
 
   }
 
@@ -16,7 +16,8 @@ const Card = ({ dog, input, setInput }) => {
       </div>
       <div className={styles.details}>
         <h3>{dog.name}</h3>
-        {dog.weight  ? <p>Peso: {dog.weight} kg</p> : null }
+        {dog.weightMin  ? <p>Peso minimo: {dog.weightMin} kg</p> : null }
+        {dog.weightMax  ? <p>Peso maximo: {dog.weightMax} kg</p> : null }
         {dog.height  ? <p>Altura: {dog.height} cm</p> : null }
         {dog.life_span ? <p>Años de vida: {dog.life_span}</p> : null }
         <div className={styles.temperaments}>

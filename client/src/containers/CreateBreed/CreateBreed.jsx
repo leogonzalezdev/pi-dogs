@@ -5,14 +5,25 @@ import styles from "./CreateBreed.module.css";
 import axios from "axios";
 import { getTemperaments } from "../../redux/actions";
 import Card from "../../components/CardCreateBreed/Card.jsx";
+import { useHistory } from "react-router-dom";
+
+import {
+  validateInputName,
+  validateInputWeightMax,
+  validateInputWeightMin,
+  validateForm,
+} from "../../helpers/validationForm";
 
 const CreateBreed = ({ getTemperaments, temperaments }) => {
+  const history = useHistory();
   const [msgError, setMsgError] = useState("");
-
+  const [invalid, setInvalid] = useState(true);
   const [input, setInput] = useState({
     name: "Nombre de la raza",
-    weight: "",
-    height: "",
+    weightMin: "",
+    weightMax: "",
+    heightMin: "",
+    heightMax: "",
     life_span: "",
     image: "https://cdn.pixabay.com/photo/2021/05/17/10/40/dog-6260301_960_720.jpg",
     temperament: [],
@@ -23,20 +34,12 @@ const CreateBreed = ({ getTemperaments, temperaments }) => {
   }, []);
 
   useEffect(() => {
-    console.log(input);
+    validateForm(setInput, input, setInvalid, setMsgError);
   }, [input]);
 
-  const handleChange = (e) => {
-    e.preventDefault();
-    if (e.target.name === "name" && !/^[A-Z]+$/i.test(e.target.value) && e.target.value !== "") {
-      document.getElementById('inputName').classList.add(styles.error);
-      setMsgError("El nombre de la raza solo pueden ser letras.");
-    } else {
-      document.getElementById('inputName').classList.remove(styles.error);
-      setMsgError("");
-    }
-
-    setInput({ ...input, [e.target.name]: e.target.value });
+  const handleChange = (event) => {
+    event.preventDefault();
+    setInput({ ...input, [event.target.name]: event.target.value });
   };
 
   function addTemperament(e) {
@@ -49,20 +52,25 @@ const CreateBreed = ({ getTemperaments, temperaments }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const respuesta = await axios.post("http://localhost:3001/dogs", input);
-    if (respuesta.status === 200) {
-      console.log("se creo");
-      setInput({
-        name: "",
-        weight: "",
-        height: "",
-        life_span: "",
-        image: "https://cdn.pixabay.com/photo/2021/05/17/10/40/dog-6260301_960_720.jpg",
-        temperament: [],
-      });
-    } else {
-      console.log("no se creo");
-    }
+    const isValidate = validateForm(setInput, input, setInvalid, setMsgError);
+
+    if (isValidate === "success") {
+      const objBack = {
+        name: input.name,
+        weight: input.weightMin + " - " + input.weightMax,
+        height: input.heightMin + " - " + input.heightMax,
+        life_span: input.life_span,
+        image: input.image,
+        temperament: input.temperament,
+      };
+      const respuesta = await axios.post("http://localhost:3001/dogs", objBack);
+      if (respuesta.status === 200) {
+        alert("Tu raza se creó correctamente, en instantes serás redirigido.");
+        history.push("/home");
+      } else {
+        alert("Hubo un problema al crear tu raza, intentalo de nuevo más tarde.");
+      }
+    } 
   };
 
   return (
@@ -70,30 +78,55 @@ const CreateBreed = ({ getTemperaments, temperaments }) => {
       <Navbar />
       <div className={styles.container}>
         <form onSubmit={handleSubmit} className={styles.formulario}>
-          <input name="name" id="inputName" onChange={handleChange} type="text" className={styles.formInput} placeholder="Name" />
           <input
-            name="weight"
+            name="name"
+            id="inputName"
             onChange={handleChange}
-            type="number"
+            type="text"
             className={styles.formInput}
-            placeholder="Weight"
+            placeholder="Nombre de la raza"
           />
-          <input
-            name="height"
-            onChange={handleChange}
-            type="number"
-            className={styles.formInput}
-            placeholder="Height"
-          />
+          <div className={styles.formGroup}>
+            <input
+              name="weightMin"
+              onChange={handleChange}
+              type="number"
+              className={styles.formInput}
+              placeholder="Peso mínimo (kg)"
+            />
+            <input
+              name="weightMax"
+              onChange={handleChange}
+              type="number"
+              className={styles.formInput}
+              placeholder="Peso máximo (kg)"
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <input
+              name="heightMin"
+              onChange={handleChange}
+              type="number"
+              className={styles.formInput}
+              placeholder="Altura mínima (cm)"
+            />
+            <input
+              name="heightMax"
+              onChange={handleChange}
+              type="number"
+              className={styles.formInput}
+              placeholder="Altura máxima (cm)"
+            />
+          </div>
           <input
             name="life_span"
             onChange={handleChange}
             type="number"
             className={styles.formInput}
-            placeholder="Life span"
+            placeholder="Promedio de vida (años)"
           />
 
-          <select className="select" name="temperaments" onChange={(e) => addTemperament(e)}>
+          <select className={styles.select} name="temperaments" onChange={(e) => addTemperament(e)}>
             <option value="">Temperamentos</option>
             {temperaments?.map((temperamento) => {
               return (
@@ -103,8 +136,13 @@ const CreateBreed = ({ getTemperaments, temperaments }) => {
               );
             })}
           </select>
-          <input type="submit" className={styles.btn} value="Crear" />
-          {msgError ? <p>{msgError}</p> : null}
+          {invalid ? (
+            <input type="submit" className={styles.btn} value="Crear" disabled />
+          ) : (
+            <input type="submit" className={styles.btn} value="Crear" />
+          )}
+
+          {msgError ? <p className={styles.error}>{msgError}</p> : null}
         </form>
         <Card dog={input} input={input} setInput={setInput} />
       </div>

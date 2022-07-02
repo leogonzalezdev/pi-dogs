@@ -97,6 +97,10 @@ select:focus {
   letter-spacing: 0.5px;
   margin-right: 10px;
 }
+option{
+  backdrop-filter: blur(10px);
+
+}
 .searchBtn:hover {
   color: var(--light);
   background: var(--cian);

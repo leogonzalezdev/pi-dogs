@@ -1,7 +1,6 @@
 .card{
   min-width: 300px;
   width: 400px;
-  margin: 20px 5px;
   background-color: #1c1b29;
   border-radius: 20px;
   box-shadow: 0 0 30px rgba(0,0,0,0.18);
@@ -24,7 +23,7 @@
 img{
   width: 100%;
   height: 100%;
-  object-position: top;
+  object-position: right;
   object-fit: cover;
   display: block;
   border-radius: 20px 20px 0 0;
@@ -36,16 +35,6 @@ img{
   line-height: 150px;
 }
 
-.card:hover{
-  box-shadow: 0 0 10px rgba(84, 255, 226, 0.702);
-}
-.card:focus{
-  box-shadow: 0 0 0 rgba(84, 255, 226, 0.702);
-  transform: scale(.95);
-}
-.card:hover img{
-  transform: scale(1.1);
-}
 .container:after{
   content: "";
   height: 100%;
@@ -116,4 +105,8 @@ img{
   color: var(--dark);
   background-color: var(--power-cian);
   border-radius: 5PX;
+}
+.span:hover{
+  color: var(--light);
+  background-color: var(--cian);
 }
