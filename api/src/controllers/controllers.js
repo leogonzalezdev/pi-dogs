@@ -59,7 +59,7 @@ async function getBreedByName(name, req, res) {
   const localSearch = await Raza.findAll({
     where: {
       name: {
-        [Op.like]: `%${name}%`,
+        [Op.iLike]: `%${name}%`,
       },
     },
     include: Temperamento,

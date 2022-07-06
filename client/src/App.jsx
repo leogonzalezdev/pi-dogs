@@ -5,20 +5,22 @@ import Welcome from "./containers/Welcome/Welcome.jsx";
 import Home from "./containers/Home/Home.jsx";
 import "./App.module.css";
 import About from "./containers/About/About";
+import NotFound from "./containers/NotFound/404NotFound";
 
 function App() {
   return (
     <>
       <Route exact path="/" render={() => <Welcome />} />
-      <Route path="/home" render={() => <Home />} />
+      <Route exact path="/home" render={() => <Home />} />
       <Route
         path="/dogs/:id"
         render={({ match }) => {
           return <DogDetails id={match.params.id} />;
         }}
       />
-      <Route path="/createBreed" render={() => <CreateBreed />} />
-      <Route path="/about" render={() => <About />} />
+      <Route exact path="/createBreed" render={() => <CreateBreed />} />
+      <Route exact path="/about" render={() => <About />} />
+      {/* <Route  path="*" render={() => <NotFound />} /> */}
     </>
   );
 }

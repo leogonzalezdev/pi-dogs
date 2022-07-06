@@ -1,24 +1,19 @@
 .searchBar {
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  margin-top: 20px;
-  padding: 0.5em 7em;
-  flex-wrap: wrap;
-}
-.fomulario {
-  display: flex;
-  justify-content: space-around;
-}
-.searchInputContainer {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
+  flex-direction: column;
+  padding: 0.5em 6em;
   flex-wrap: nowrap;
 }
+.searchBar .formGroup{
+  margin: 10px auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 .searchInput {
   height: 35px;
-  margin-right: 10px;
   background: transparent;
   padding: 0 10px;
   border-radius: 5px;
@@ -46,36 +41,15 @@
   justify-content: space-around;
   flex-wrap: nowrap;
 }
-select {
-  width: auto;
-  height: 35px;
-  padding: 0 5px;
-  text-transform: uppercase;
-  font-family: "Roboto", sans-serif;
-  letter-spacing: 0.7px;
-  font-size: 12px;
-  margin: 0 10px;
-  cursor: pointer;
-  outline: none;
-  border: none;
-  border-radius: 3px;
-  background: var(--power-cian);
-  color: var(--dark);
-  transition: all 600ms;
-  font-weight: 600;
-}
+
 .select select::-ms-expand {
   display: none;
 }
 
-select:hover,
-select:focus {
-  color: var(--light);
-  background: var(--cian);
-}
 select:focus {
   background: var(--cian-dark);
 }
+
 .select select:disabled {
   opacity: 0.5;
   pointer-events: none;
@@ -95,11 +69,7 @@ select:focus {
   font-weight: 600;
   transition: all 400ms;
   letter-spacing: 0.5px;
-  margin-right: 10px;
-}
-option{
-  backdrop-filter: blur(10px);
-
+  margin: 0 10px;
 }
 .searchBtn:hover {
   color: var(--light);
@@ -110,7 +80,11 @@ option{
   color: var(--light);
   background: var(--cian-dark);
 }
+option{
+  backdrop-filter: blur(10px);
+}
 .resetBtn{
+  position: sticky;
   padding: 5px 3px;
   cursor: pointer;
   filter: invert();
@@ -127,8 +101,8 @@ option{
 
 @media (max-width: 972px) {
   .searchBar {
-    flex-direction: column;
-    padding: 0.5em 3em;
+    /* flex-direction: column; */
+    padding: 0.5em 2em;
     justify-content: space-around;
     align-items: flex-start;
   }
@@ -144,9 +118,9 @@ option{
     flex-wrap: wrap;
   }
 }
-@media (max-width:508px) {
+@media (max-width:549px) {
   .searchBar{
-    padding: 0 50px;
+    padding: 0 20px;
   }
   .searchInputContainer{
     justify-content: space-evenly;

@@ -14,8 +14,8 @@
 }
 
 .formulario {
-  width: 500px;
-  height: 400px;
+  width: 600px;
+  height: 500px;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -24,7 +24,7 @@
 }
 
 .formInput {
-  width: 250px;
+  width: 350px;
   background: var(--light);
   padding: 12px 10px;
   border-radius: 5px;
@@ -35,7 +35,7 @@
   transition: all 300ms;
 }
 .select{
-  width: 270px;
+  width: 370px;
 }
 .error {
   width: 250px;
@@ -52,11 +52,11 @@
 }
 .formGroup{
   display: flex;
-  width: 270px;  
+  width: 370px;  
   justify-content: space-between;
 }
 .formGroup input {
-  width: 110px;
+  width: 160px;
 }
 .btn {
   color: var(--dark);
@@ -69,7 +69,7 @@
   padding: 10px 15px;
   font-size: 16px;
   font-weight: 600;
-  width: 270px;
+  width: 370px;
   transition: all 400ms;
   letter-spacing: 0.5px;
 }

@@ -6,13 +6,7 @@ import axios from "axios";
 import { getTemperaments } from "../../redux/actions";
 import Card from "../../components/CardCreateBreed/Card.jsx";
 import { useHistory } from "react-router-dom";
-
-import {
-  validateInputName,
-  validateInputWeightMax,
-  validateInputWeightMin,
-  validateForm,
-} from "../../helpers/validationForm";
+import { validateForm } from "../../helpers/validationForm";
 
 const CreateBreed = ({ getTemperaments, temperaments }) => {
   const history = useHistory();
@@ -65,12 +59,12 @@ const CreateBreed = ({ getTemperaments, temperaments }) => {
       };
       const respuesta = await axios.post("http://localhost:3001/dogs", objBack);
       if (respuesta.status === 200) {
-        alert("Tu raza se creó correctamente, en instantes serás redirigido.");
+        alert("Tu raza se creó correctamente, presiona aceptar para volver al inicio.");
         history.push("/home");
       } else {
         alert("Hubo un problema al crear tu raza, intentalo de nuevo más tarde.");
       }
-    } 
+    }
   };
 
   return (
@@ -78,6 +72,14 @@ const CreateBreed = ({ getTemperaments, temperaments }) => {
       <Navbar />
       <div className={styles.container}>
         <form onSubmit={handleSubmit} className={styles.formulario}>
+          <h2
+            style={{
+              color: "white",
+              fontWeight: "500",
+            }}
+          >
+            Crea tu propia raza
+          </h2>
           <input
             name="name"
             id="inputName"
@@ -124,6 +126,13 @@ const CreateBreed = ({ getTemperaments, temperaments }) => {
             type="number"
             className={styles.formInput}
             placeholder="Promedio de vida (años)"
+          />
+          <input
+            name="image"
+            onChange={handleChange}
+            type="url"
+            className={styles.formInput}
+            placeholder="URL de la imagen: https://..."
           />
 
           <select className={styles.select} name="temperaments" onChange={(e) => addTemperament(e)}>

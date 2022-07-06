@@ -3,13 +3,16 @@ import { getDogsByBreeds } from "../../redux/actions";
 import { connect } from "react-redux";
 import styles from "./SearchBar.module.css";
 
-function SearchBar({ getDogsByBreeds, dogsBreeds, setDogToShow, dogsToShow, temperaments, dogsLoaded, setCurrentPage}) {
-  const [breed, setBreed] = useState("");
+function SearchBar(props) {
+  const { getDogsByBreeds, dogsBreeds, setDogToShow, dogsToShow, temperaments, dogsLoaded, setCurrentPage } = props;
 
-  useEffect(()=>{
-    setCurrentPage(1)
-    setDogToShow(dogsBreeds)
-  }, [dogsBreeds])
+  const [breed, setBreed] = useState("");
+  const [dogsFiltered, setDogsFiltered] = useState(dogsToShow);
+
+  useEffect(() => {
+    setCurrentPage(1);
+    setDogToShow(dogsBreeds);
+  }, [dogsBreeds]);
 
   async function handleInputChange(evento) {
     setBreed(evento.target.value);
@@ -18,8 +21,8 @@ function SearchBar({ getDogsByBreeds, dogsBreeds, setDogToShow, dogsToShow, temp
 
   async function handleSubmit(e) {
     e.preventDefault();
-    if (breed === '') {
-      return setDogToShow(dogsLoaded)
+    if (breed === "") {
+      return setDogToShow(dogsLoaded);
     }
     getDogsByBreeds(breed);
   }
@@ -68,7 +71,22 @@ function SearchBar({ getDogsByBreeds, dogsBreeds, setDogToShow, dogsToShow, temp
     setDogToShow(dogsOrderByTemperaments);
   }
 
+  function filterByCreated(e) {
+    if (e.target.value === "api") {
+      const filterApi = dogsToShow.filter((dog) => typeof dog.id !== "string");
+      console.log(filterApi);
+      return setDogToShow(filterApi);
+    }
+    if (e.target.value === "db") {
+      const filterDb = dogsToShow.filter((dog) => typeof dog.id === "string");
+      console.log(filterDb);
+      return setDogToShow(filterDb);
+    }
+    setDogToShow(dogsFiltered);
+  }
+
   function getAllDogs(e) {
+    setCurrentPage(1);
     setDogToShow(dogsLoaded);
   }
 
@@ -83,7 +101,7 @@ function SearchBar({ getDogsByBreeds, dogsBreeds, setDogToShow, dogsToShow, temp
   return (
     <>
       <form onSubmit={(e) => handleSubmit(e)} className={styles.searchBar}>
-        <div className={styles.searchInputContainer}>
+        <div className={styles.formGroup}>
           <input
             className={styles.searchInput}
             type="text"
@@ -96,18 +114,30 @@ function SearchBar({ getDogsByBreeds, dogsBreeds, setDogToShow, dogsToShow, temp
           <button className={styles.searchBtn} type="submit">
             buscar
           </button>
+          <select className="select" onChange={(e) => filterByCreated(e)}>
+            <option value="">Todas</option>
+            <option value="api">Existentes</option>
+            <option value="db">Creadas</option>
+          </select>
+          <img
+            onClick={() => getAllDogs()}
+            className={styles.resetBtn}
+            src="https://img.icons8.com/material-sharp/96/000000/reboot.png"
+          />
         </div>
-        <div className={styles.selectContainer}>
+        <div className={styles.formGroup}>
           <select className="select" onChange={(e) => filterByOrder(e)}>
             <option value="az">A-Z / Z-A</option>
             <option value="az">A-Z</option>
             <option value="za">Z-A</option>
           </select>
+
           <select className="select" onChange={(e) => filterByWeight(e)}>
             <option value="menor">Peso</option>
             <option value="mayor">Mayor a Menor</option>
             <option value="menor">Menor a Mayor</option>
           </select>
+
           <select className="select" onChange={(e) => filterByTemperaments(e)}>
             <option value="">Temperamentos</option>
             {temperaments?.map((temperamento) => {
@@ -118,7 +148,6 @@ function SearchBar({ getDogsByBreeds, dogsBreeds, setDogToShow, dogsToShow, temp
               );
             })}
           </select>
-          <img onClick={() => getAllDogs()} className={styles.resetBtn} src="https://img.icons8.com/material-sharp/96/000000/reboot.png"/>
         </div>
       </form>
     </>

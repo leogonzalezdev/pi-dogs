@@ -69,7 +69,7 @@ function validateInputWeightMin(input) {
   if ((input.weightMin < 5 || input.weightMin > 180) && input.weightMin !== "") {
     return { error: "El peso mínimo debe estar entre 5 y 180" };
   }
-  if (parseInt(input.weightMax) <= parseInt(input.weightMin) && input.weightMin !== "") {
+  if (parseInt(input.weightMax) <= parseInt(input.weightMin) && input.weightMax !== "") {
     return { error: "El peso mínimo no puede ser mayor que el peso máximo." };
   } else {
     return true;
@@ -85,7 +85,7 @@ function validateInputWeightMax(input) {
   if (input.weightMax < 5 || input.weightMax > 180) {
     return { error: "El peso máximo debe estar entre 5 y 180." };
   }
-  if (parseInt(input.weightMin) >= parseInt(input.weightMax) && input.weightMax !== "") {
+  if (parseInt(input.weightMin) >= parseInt(input.weightMax) && input.weightMin !== "") {
     return { error: "El peso máximo no puede ser menor que el peso mínimo" };
   } else {
     return true;
@@ -118,7 +118,7 @@ function validateInputHeightMax(input) {
   if (input.heightMax < 15 || input.heightMax > 150) {
     return { error: "El altura máximo debe estar entre 15 y 150." };
   }
-  if (parseInt(input.heightMin) > parseInt(input.heightMax) && input.heightMax !== "") {
+  if (parseInt(input.heightMin) > parseInt(input.heightMax) && input.heightMin !== "") {
     return { error: "El altura máximo no puede ser menor que el peso mínimo" };
   } else {
     return true;

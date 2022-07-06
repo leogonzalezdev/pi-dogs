@@ -19,8 +19,8 @@ const Btn = ({text, background, type, color}) => {
   }
 
   return (
-    <button style={stylesBtn} type="submit">
-      Search
+    <button style={stylesBtn} type="number">
+      {text}
     </button>
   );
 };

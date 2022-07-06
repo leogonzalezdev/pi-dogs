@@ -14,7 +14,7 @@
   align-items: flex-start;
   flex-wrap: wrap;
   padding: 0 5em;
-  margin: 0;
+  margin-bottom: 20px;
 }
 @media (max-width:1094px) {
   .cardsContainer{

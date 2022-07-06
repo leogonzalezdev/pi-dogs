@@ -30,11 +30,10 @@
   background: transparent;
   transition: all 600ms;
   border-radius: 14px;
+
 }
 .btn:hover{
-  border-radius: 34px;
   background:var(--power-cian);
-  color: var(--light);
 }
 .btn:focus{
   background:var(--cian-dark);

@@ -1,7 +1,7 @@
 .welcomeContainer{
   height: 100vh;
   background-color: var(--dark);
-  background-image: url('https://img5.goodfon.com/wallpaper/nbig/b/c9/sobaka-labrador-osheinik-chernyi-fon-pios.jpg');
+  background-image: url('https://images.hdqwalls.com/wallpapers/black-dog-glowing-eyes-4k-wk.jpg');
   background-position: center;
   background-size: cover;
   display: flex;
@@ -36,6 +36,10 @@
   filter: brightness(300%);
 }
 .callToActionBtn{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
   border-radius: 5px;
   position: absolute;
   bottom: 50px;
@@ -44,12 +48,16 @@
   margin: 0 auto;
   font-size: 25px;
   font-weight: 600;
-  text-transform: uppercase;
-  padding: .4em 1.2em;
+  padding: .3em .5em;
   background: var(--power-cian);
   box-shadow: 0 2px 5px rgba(0, 0, 0, .556);
   transition: all 600ms;
 }
+.callToActionBtn > img{
+  margin-left: 10px;
+  width: 40px;
+}
+
 .callToActionBtn:hover{
   color: var(--light);
   background: var(--cian);
@@ -64,7 +72,8 @@
     font-size: 50px;
   }
   .callToActionBtn{
-    bottom: 30px;
+    left: 20px;
+    bottom: 20px;
   }
   .socialMedia{
     padding: 3px 0px;
