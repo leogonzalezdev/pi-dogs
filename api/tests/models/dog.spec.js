@@ -6,6 +6,7 @@ describe('Dog model', () => {
     .catch((err) => {
       console.error('Unable to connect to the database:', err);
     }));
+    
   describe('Validators', () => {
     beforeEach(() => Dog.sync({ force: true }));
     describe('name', () => {

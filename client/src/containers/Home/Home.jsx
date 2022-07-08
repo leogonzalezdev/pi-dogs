@@ -10,9 +10,11 @@ import Spinner from "../../components/Spinner/Spinner.jsx";
 
 const Home = ({ dogsLoaded, getDogs, getTemperaments, temperaments }) => {
   const [dogsToShow, setDogToShow] = useState([]);
+
   const [loading, setLoading] = useState(false);
 
   // PAGINATION
+  
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(8);
   /**
@@ -37,8 +39,8 @@ const Home = ({ dogsLoaded, getDogs, getTemperaments, temperaments }) => {
 
   useEffect(async function () {
     setLoading(true);
-    await getDogs();
-    await getTemperaments();
+    await getDogs(); 
+    await getTemperaments(); 
     setLoading(false);
   }, []);
 

@@ -67,11 +67,34 @@ const CreateBreed = ({ getTemperaments, temperaments }) => {
     }
   };
 
+  const uploadImage = async (e) => {
+    const form = new FormData();
+    form.append("image", e.target.files[0]);
+    console.log(form);
+    const settings = {
+      "method": "POST",
+      "timeout": 0,
+      "processData": false,
+      "mimeType": "multipart/form-data",
+      "contentType": false,
+      "data": form
+    };
+    
+    const respuesta = await axios("https://api.imgbb.com/1/upload?expiration=600&key=8b366ebc3982cb0ee92345b45df2d903", settings)
+
+    setInput({
+      ...input,
+      image: respuesta.data.data.url,
+    });
+
+    console.log(respuesta.data.data.url);
+  };
+
   return (
     <section className={styles.createBreed}>
       <Navbar />
       <div className={styles.container}>
-        <form onSubmit={handleSubmit} className={styles.formulario}>
+        <form onSubmit={handleSubmit} className={styles.formulario} encType='multipart/form-data'>
           <h2
             style={{
               color: "white",
@@ -129,11 +152,19 @@ const CreateBreed = ({ getTemperaments, temperaments }) => {
           />
           <input
             name="image"
+            onChange={uploadImage}
+            className={styles.formInput}
+            accept="image/*"
+            type='file'
+            
+          />
+          {/* <input
+            name="image"
             onChange={handleChange}
             type="url"
             className={styles.formInput}
             placeholder="URL de la imagen: https://..."
-          />
+          /> */}
 
           <select className={styles.select} name="temperaments" onChange={(e) => addTemperament(e)}>
             <option value="">Temperamentos</option>

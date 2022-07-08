@@ -1,6 +1,7 @@
 .detailsContainer {
   display: flex;
   align-items: center;
+  padding: 3em 0;
 }
 .backgroundImage {
   filter: blur(40px);

@@ -23,26 +23,11 @@ const Welcome = () => {
         <h1 className={styles.title}>Bienvenido a DogsApp</h1>
       </div>
       <Link to="/home" className={styles.callToActionBtn}>
-        Get Started 
+        Comenzar 
         <img 
         src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/000000/external-dog-family-life-flaticons-lineal-color-flat-icons.png"/>
       </Link>
     </section>
-    // <section className={styles.container}>
-    //   <div className={styles.greeting}>
-    //     <h3 className={styles.title}>
-    //       Hello! Welcome
-    //       <br />
-    //       to DogsApp &#128021;
-    //     </h3>
-    //     <img src={dogPicture} alt="Imagen de perrito programador" className={styles.dogPicture} />
-    //   </div>
-    //   <Link to="/home" className={styles.welcomeBtn}>
-    //     <img src="https://img.icons8.com/ios-glyphs/90/000000/dog-jump.png"/>
-    //     Go Home
-    //     </Link>
-    //   {/* <WelcomeBtn/> */}
-    // </section>
   );
 };
 

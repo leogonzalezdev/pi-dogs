@@ -7,6 +7,7 @@ function SearchBar(props) {
   const { getDogsByBreeds, dogsBreeds, setDogToShow, dogsToShow, temperaments, dogsLoaded, setCurrentPage } = props;
 
   const [breed, setBreed] = useState("");
+  
   const [dogsFiltered, setDogsFiltered] = useState(dogsToShow);
 
   useEffect(() => {
@@ -39,6 +40,7 @@ function SearchBar(props) {
       setDogToShow(dogsOrderByZA);
       return;
     }
+    
   }
 
   function filterByWeight(e) {
@@ -62,6 +64,7 @@ function SearchBar(props) {
   }
 
   function filterByTemperaments(e) {
+    setCurrentPage(1)
     const dogsOrderByTemperaments = [];
     dogsLoaded.forEach((dog) => {
       if (dog.temperament?.includes(e.target.value)) {
@@ -73,16 +76,14 @@ function SearchBar(props) {
 
   function filterByCreated(e) {
     if (e.target.value === "api") {
-      const filterApi = dogsToShow.filter((dog) => typeof dog.id !== "string");
-      console.log(filterApi);
+      const filterApi = dogsLoaded.filter((dog) => typeof dog.id !== "string");
       return setDogToShow(filterApi);
     }
     if (e.target.value === "db") {
-      const filterDb = dogsToShow.filter((dog) => typeof dog.id === "string");
-      console.log(filterDb);
+      const filterDb = dogsLoaded.filter((dog) => typeof dog.id === "string");
       return setDogToShow(filterDb);
     }
-    setDogToShow(dogsFiltered);
+    setDogToShow(dogsLoaded);
   }
 
   function getAllDogs(e) {
@@ -102,6 +103,7 @@ function SearchBar(props) {
     <>
       <form onSubmit={(e) => handleSubmit(e)} className={styles.searchBar}>
         <div className={styles.formGroup}>
+
           <input
             className={styles.searchInput}
             type="text"
@@ -111,9 +113,11 @@ function SearchBar(props) {
             placeholder="Ingresar una raza..."
             onChange={(e) => handleInputChange(e)}
           />
+
           <button className={styles.searchBtn} type="submit">
             buscar
           </button>
+
           <select className="select" onChange={(e) => filterByCreated(e)}>
             <option value="">Todas</option>
             <option value="api">Existentes</option>

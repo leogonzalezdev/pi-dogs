@@ -16,7 +16,7 @@ xdescribe('Videogame routes', () => {
   }));
   beforeEach(() => Dog.sync({ force: true })
     .then(() => Dog.create(dog)));
-  describe('GET /dogs', () => {
+  xdescribe('GET /dogs', () => {
     it('should get 200', () =>
       agent.get('/dogs').expect(200)
     );

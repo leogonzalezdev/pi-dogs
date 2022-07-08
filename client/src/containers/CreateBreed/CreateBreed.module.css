@@ -34,7 +34,7 @@
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.518);
   transition: all 300ms;
 }
-.select{
+.select {
   width: 370px;
 }
 .error {
@@ -45,14 +45,13 @@
   background-color: var(--danger);
   border-radius: 14px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.518);
-
 }
 .formInput:focus {
   box-shadow: 0 1px 10px rgba(37, 37, 37, 0.579);
 }
-.formGroup{
+.formGroup {
   display: flex;
-  width: 370px;  
+  width: 370px;
   justify-content: space-between;
 }
 .formGroup input {
@@ -83,8 +82,34 @@
   background: var(--cian-dark);
 }
 
-.btn:disabled{
+.btn:disabled {
   background: var(--secondary);
   color: var(--light);
-  cursor:auto;
+  cursor: auto;
 }
+@media (max-width: 768px) {
+  .container {
+    padding: 0;
+  }
+}
+@media (max-width: 425px) {
+  .formulario {
+    width: 300px;
+  }
+  .formInput {
+    width: 300px;
+  }
+  .formGroup {
+    width: 320px;
+  }
+  .formGroup input {
+    width: 130px;
+  }
+  .btn {
+    width: 320px;
+  }
+  .select {
+    width: 320px;
+  }
+}
+

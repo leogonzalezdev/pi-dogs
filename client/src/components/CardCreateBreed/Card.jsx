@@ -2,31 +2,41 @@ import React from "react";
 import styles from "./Card.module.css";
 
 const Card = ({ dog, input, setInput }) => {
-
   function deleteSpan(e) {
-    const arrayFilter = input.temperament.filter(( t, i ) => i != e.target.id);
-    setInput({...input, temperament: arrayFilter})
-
+    const arrayFilter = input.temperament.filter((t, i) => i != e.target.id);
+    setInput({ ...input, temperament: arrayFilter });
   }
 
   return (
     <div className={styles.card}>
       <div className={styles.container}>
-         <img src={dog.image} alt={dog.name}/>
+        <img src={dog.image} alt={dog.name} />
       </div>
       <div className={styles.details}>
         <h3>{dog.name}</h3>
-        {dog.weightMin  ? <p>Peso minimo: {dog.weightMin} kg</p> : null }
-        {dog.weightMax  ? <p>Peso maximo: {dog.weightMax} kg</p> : null }
-        {dog.height  ? <p>Altura: {dog.height} cm</p> : null }
-        {dog.life_span ? <p>Años de vida: {dog.life_span}</p> : null }
+        {dog.weightMin || dog.weightMax ? (
+          <p>
+            Peso: {dog.weightMin} - {dog.weightMax} kg
+          </p>
+        ) : null}
+        {dog.heightMin || dog.heightMax ? (
+          <p>
+            Altura: {dog.heightMin} - {dog.heightMax} cm
+          </p>
+        ) : null}
+        {dog.life_span ? <p>Años de vida: {dog.life_span}</p> : null}
         <div className={styles.temperaments}>
-        {
-          input.temperament.leght > 0 ? <p>Temperaments: </p> :
-        input.temperament?.map((temperament, index) => {
-          return( <span className={styles.span} key={index} id={index} onClick={(e) => deleteSpan(e)}>{temperament}</span>)
-        })
-        }
+          {input.temperament.leght > 0 ? (
+            <p>Temperaments: </p>
+          ) : (
+            input.temperament?.map((temperament, index) => {
+              return (
+                <span className={styles.span} key={index} id={index} onClick={(e) => deleteSpan(e)}>
+                  {temperament}
+                </span>
+              );
+            })
+          )}
         </div>
       </div>
     </div>
