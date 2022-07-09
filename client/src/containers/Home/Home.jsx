@@ -12,28 +12,13 @@ const Home = ({ dogsLoaded, getDogs, getTemperaments, temperaments }) => {
   const [dogsToShow, setDogToShow] = useState([]);
 
   const [loading, setLoading] = useState(false);
-
-  // PAGINATION
   
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(8);
-  /**
-  [
-    {},
-    {},
-    {},
-    {},
-    {}
-  ]
-  */
+
   const indexOfLastPost = currentPage * postsPerPage;
-  // 1 * 2 = 2
-  // 2 * 2 = 4
-  // 3 * 2 = 6
+
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  // 2 - 2 = 0
-  // 4 - 2 = 2
-  // 6 - 2 = 4
 
   const currentPosts = dogsToShow.slice(indexOfFirstPost, indexOfLastPost);
 
