@@ -10,7 +10,11 @@ const Card = ({ dog, input, setInput }) => {
   return (
     <div className={styles.card}>
       <div className={styles.container}>
-        <img src={dog.image} alt={dog.name} />
+        {
+          dog.image === ''
+          ? <img src='https://cdn.pixabay.com/photo/2021/05/17/10/40/dog-6260301_960_720.jpg'alt={dog.name} />
+          : <img src={dog.image} alt={dog.name} />
+        }
       </div>
       <div className={styles.details}>
         <h3>{dog.name}</h3>

@@ -75,6 +75,7 @@ function SearchBar(props) {
   }
 
   function filterByCreated(e) {
+    setCurrentPage(1)
     if (e.target.value === "api") {
       const filterApi = dogsLoaded.filter((dog) => typeof dog.id !== "string");
       return setDogToShow(filterApi);
@@ -86,7 +87,7 @@ function SearchBar(props) {
     setDogToShow(dogsLoaded);
   }
 
-  function getAllDogs(e) {
+  async function getAllDogs (e) {
     setCurrentPage(1);
     setDogToShow(dogsLoaded);
   }

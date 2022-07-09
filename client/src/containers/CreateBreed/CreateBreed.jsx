@@ -19,7 +19,7 @@ const CreateBreed = ({ getTemperaments, temperaments }) => {
     heightMin: "",
     heightMax: "",
     life_span: "",
-    image: "https://cdn.pixabay.com/photo/2021/05/17/10/40/dog-6260301_960_720.jpg",
+    image: "",
     temperament: [],
   });
 
