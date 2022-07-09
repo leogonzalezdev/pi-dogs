@@ -7,7 +7,7 @@ import Modal from "../../components/Modal/Modal";
 import Navbar from "../../components/Navbar/Navbar";
 import Spinner from "../../components/Spinner/Spinner";
 import styles from "./DogDetails.module.css";
-
+import { BASE_URL } from "../../constantes";
 const DogDetails = ({ dogDetails, getDogDetails, id }) => {
   const [loading, setLoading] = useState(false);
   const [estadoModal1, cambiarEstadoModal1] = useState(false);
@@ -27,7 +27,7 @@ const DogDetails = ({ dogDetails, getDogDetails, id }) => {
   const deleteBreed = async (e, id) => {
     // const respuesta = await deleteBreed(id);
     // console.log(respuesta.data);
-    const respuesta = await axios.delete(`http://localhost:3001/dogs/${id}`);
+    const respuesta = await axios.delete(`${BASE_URL}/dogs/${id}`);
     if (respuesta.status === 200) {
       cambiarEstadoModal1(!estadoModal1);
     }
