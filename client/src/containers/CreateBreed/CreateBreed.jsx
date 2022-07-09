@@ -7,6 +7,7 @@ import { getTemperaments } from "../../redux/actions";
 import Card from "../../components/CardCreateBreed/Card.jsx";
 import { useHistory } from "react-router-dom";
 import { validateForm } from "../../helpers/validationForm";
+import { BASE_URL } from "../../constantes";
 
 const CreateBreed = ({ getTemperaments, temperaments }) => {
   const history = useHistory();
@@ -57,7 +58,7 @@ const CreateBreed = ({ getTemperaments, temperaments }) => {
         image: input.image,
         temperament: input.temperament,
       };
-      const respuesta = await axios.post("http://localhost:3001/dogs", objBack);
+      const respuesta = await axios.post(`${BASE_URL}/dogs`, objBack);
       if (respuesta.status === 200) {
         alert("Tu raza se creó correctamente, presiona aceptar para volver al inicio.");
         history.push("/home");
