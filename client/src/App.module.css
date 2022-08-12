@@ -5,8 +5,8 @@
   --primary-hover: #f9d65a;
   --primary-focus: #fccf2dd0;
 
-  --secondary: #464b55;
-  --secondary-hover: #464b55;
+  --secondary: #48494d55;
+  --secondary-hover: #3b3b3b50;
   --secondary-focus: #464b55;
 
   --success: #0ebd8b;
@@ -40,6 +40,20 @@ body {
   background-color: var(--dark);
   font-family: "Roboto", sans-serif;
 }
+
+*::-webkit-scrollbar {
+  width: 5px;               /* width of the entire scrollbar */
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--dark);        /* color of the tracking area */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--light);    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+}
+
 section {
   height: 100%;
 }

@@ -1,8 +1,7 @@
 .searchBar {
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  padding: 0.5em 6em;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 }
 .searchBar .formGroup{
   margin: 10px auto;
@@ -101,27 +100,21 @@ option{
 
 @media (max-width: 972px) {
   .searchBar {
-    /* flex-direction: column; */
-    padding: 0.5em 2em;
     justify-content: space-around;
     align-items: flex-start;
   }
   .searchInputContainer {
     margin-bottom: 10px;
   }
-  select {
-    margin-left: 2px;
-  }
+ 
 }
 @media (max-width:768px) {
   .selectContainer {
     flex-wrap: wrap;
   }
 }
+
 @media (max-width:549px) {
-  .searchBar{
-    padding: 0 50px;
-  }
   .searchBar .formGroup{
     justify-content: space-evenly;
     align-items: center;
@@ -148,18 +141,12 @@ option{
     font-weight: 500;
   }
 }
+
 @media (max-width:400px) {
-  .searchBar{
-    align-items: center;
-    padding: 0;
-    width: 100%;
-    margin: 0;
-  }
   .searchBar .formGroup:first-child{
     flex-direction: column;
   }
   .searchBar .formGroup:first-child select{
-    width: 210px !important;
   }
   .searchBtn{
     margin-bottom: 10px;

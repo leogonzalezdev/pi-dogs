@@ -3,8 +3,7 @@ const { Raza, Temperamento } = require("../db");
 // const Temperamento = require("../models/Temperamento");
 const axios = require("axios");
 const { Op } = require("sequelize");
-const {getBreedById, getBreedByName} = require('../controllers/controllers');
-
+const { getBreedById, getBreedByName } = require("../controllers/controllers");
 
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -91,6 +90,17 @@ router.post("/dogs", async (req, res) => {
   } catch (error) {
     return res.status(404).json({ msg: "Error en alguno de los datos provistos", err: error });
   }
+});
+
+router.delete("/dogs/:id", async (req, res) => {
+  const { id } = req.params;
+  const breedSearched = await Raza.destroy({  
+    where: {
+      id: id
+    }
+  });
+
+  res.json(breedSearched);
 });
 
 // Configurar los routers

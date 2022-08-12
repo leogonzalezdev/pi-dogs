@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getDogsByBreeds } from "../../redux/actions";
 import { connect } from "react-redux";
+import { FiRefreshCw } from "react-icons/fi";
 import styles from "./SearchBar.module.css";
 
 function SearchBar(props) {
@@ -124,12 +125,10 @@ function SearchBar(props) {
             <option value="api">Existentes</option>
             <option value="db">Creadas</option>
           </select>
-          <img
-            onClick={() => getAllDogs()}
-            className={styles.resetBtn}
-            src="https://img.icons8.com/material-sharp/96/000000/reboot.png"
-          />
+          <FiRefreshCw size={35} onClick={() => getAllDogs()}
+            className={styles.resetBtn}/>
         </div>
+
         <div className={styles.formGroup}>
           <select className="select" onChange={(e) => filterByOrder(e)}>
             <option value="az">A-Z / Z-A</option>

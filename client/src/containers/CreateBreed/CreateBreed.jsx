@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
+import Card from "../../components/CardCreateBreed/Card.jsx";
 import Navbar from "../../components/Navbar/Navbar";
 import styles from "./CreateBreed.module.css";
 import axios from "axios";
 import { getTemperaments } from "../../redux/actions";
-import Card from "../../components/CardCreateBreed/Card.jsx";
 import { useHistory } from "react-router-dom";
 import { validateForm } from "../../helpers/validationForm";
 import { BASE_URL } from "../../constantes";
+import Modal from "../../components/Modal/Modal.jsx";
 
 const CreateBreed = ({ getTemperaments, temperaments }) => {
   const history = useHistory();
   const [msgError, setMsgError] = useState("");
   const [invalid, setInvalid] = useState(true);
+  const [estadoModal1, cambiarEstadoModal1] = useState(false);
+
   const [input, setInput] = useState({
     name: "Nombre de la raza",
     weightMin: "",
@@ -60,8 +63,7 @@ const CreateBreed = ({ getTemperaments, temperaments }) => {
       };
       const respuesta = await axios.post(`${BASE_URL}/dogs`, objBack);
       if (respuesta.status === 200) {
-        alert("Tu raza se creó correctamente, presiona aceptar para volver al inicio.");
-        history.push("/home");
+        cambiarEstadoModal1(true);
       } else {
         alert("Hubo un problema al crear tu raza, intentalo de nuevo más tarde.");
       }
@@ -90,6 +92,11 @@ const CreateBreed = ({ getTemperaments, temperaments }) => {
 
     console.log(respuesta.data.data.url);
   };
+
+  const goHome = () => {
+    cambiarEstadoModal1(!estadoModal1);
+    history.push('/home');
+  }
 
   return (
     <section className={styles.createBreed}>
@@ -187,6 +194,21 @@ const CreateBreed = ({ getTemperaments, temperaments }) => {
         </form>
         <Card dog={input} input={input} setInput={setInput} />
       </div>
+      <Modal
+        estado={estadoModal1}
+        cambiarEstado={cambiarEstadoModal1}
+        titulo="Cambio Exitoso!"
+        mostrarHeader={true}
+        mostrarOverlay={true}
+        posicionModal={"center"}
+        padding={"20px"}
+      >
+        <div>
+          <h1>Raza creada correctamente</h1>
+          <p>Presiona aceptar para volver al Inicio.</p>
+          <button onClick={() => goHome()}>Aceptar</button>
+        </div>
+      </Modal>
     </section>
   );
 };
